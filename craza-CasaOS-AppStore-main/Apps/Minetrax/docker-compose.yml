@@ -1,0 +1,197 @@
+name: Crazaa-Gamer-Minetrax
+services:
+  app:
+    cpu_shares: 90
+    command: []
+    depends_on:
+      guacd:
+        condition: service_started
+        restart: true
+        required: true
+    deploy:
+      resources:
+        limits:
+          memory: 23805M
+    environment:
+      - APP_NAME=CHANGE_ME
+      - APP_LOCALE=CHANGE_ME
+      #- AVAILABLE_LOCALES=CHANGE_ME
+      #- APP_THEME=
+      #- APP_DEBUG=
+      #- LOG_DISCORD_WEBHOOK_URL=CHANGE_ME
+      - DEBUGBAR_ENABLED=false
+      - TELESCOPE_ENABLED=true
+      - APP_URL=CHANGE_ME
+      - DB_HOST=127.0.0.1
+      - DB_PORT=3306
+      - DB_DATABASE=minetrax_db
+      - DB_USERNAME=minetarx_user
+      - DB_PASSWOR=Minetrax
+      #- REDIS_HOST=CHANGE_ME
+      #- REDIS_PASSWORD=CHANGE_ME
+      #- REDIS_PORT=CHANGE_ME
+    image: justman10000/minetrax:latest
+    labels:
+      icon: https://minetrax.github.io/img/logo.svg
+    links:
+      - guacd
+    ports:
+       - target: 80
+        published: "4456"
+        protocol: tcp
+      - target: 3306
+        published: "3310"
+        protocol: tcp
+    restart: always
+    x-casaos:
+      envs: 
+        - container: APP_NAME
+          description:
+            en_us: APP_NAME
+        - container: APP_LOCALE
+          description:
+            en_us: APP_LOCALE
+        - container: APP_URL
+          description:
+            en_us: APP_URL
+        - container: DB_HOST
+          description:
+            en_us: DB_HOST
+        - container: DB_DATABASE
+          description:
+            en_us: DB_DATABASE
+        - container: DB_USERNAME
+          description:
+            en_us: DB_USERNAME
+        - container: DB_PASSWORD
+          description:
+            en_us: DB_PASSWORD
+      ports:
+        - container: "8080"
+          description:
+            en_us: "Container Port: 8080"
+    volumes: []
+    devices: []
+    cap_add: []
+    networks:
+      - default
+    privileged: false
+    container_name: ""
+    hostname: ""
+  Nginx:
+    cpu_shares: 90
+    command: []
+    deploy:
+      resources:
+        limits:
+          memory: 31985M
+    image: linuxserver/nginx:latest
+    labels:
+      icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nginx-icon.png
+    restart: unless-stopped
+    ports: [
+      - target: 80
+        published: "780"
+        protocol: tcp
+      - target: 443
+        published: "443"
+        protocol: tcp
+    ]
+    volumes: [
+      - type: bind
+        source: /DATA/AppData/nginx/config
+        target: /config]
+    devices: []
+    cap_add: []
+    environment: [
+      - PGID=1000
+      - PUID=1000
+      - TZ=America/Phoenix
+    ]
+    networks:
+      - default
+    privileged: false
+    container_name: ""
+    hostname: ""
+  mysql:
+    cpu_shares: 90
+    command: []
+    deploy:
+      resources:
+        limits:
+          memory: 23805M
+    environment:
+      - MYSQL_DATABASE=minetrax_db
+      - MYSQL_PASSWORD=Minetrax
+      - MYSQL_ROOT_PASSWORD=Minetrax
+      - MYSQL_USER=minetarx_user
+    image: mysql:5.7
+    labels:
+      icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/guacamole.png
+    restart: always
+    volumes:
+      - type: bind
+        source: /DATA/AppData/minetrax-casa/mysql
+        target: /var/lib/mysql
+        bind:
+          create_host_path: true
+    x-casaos:
+      envs:
+        - container: MYSQL_ROOT_PASSWORD
+          description:
+            en_us: MySQL root password
+        - container: MYSQL_DATABASE
+          description:
+            en_us: MySQL database
+        - container: MYSQL_USER
+          description:
+            en_us: MySQL user
+        - container: MYSQL_PASSWORD
+          description:
+            en_us: MySQL password
+      ports:
+        - container: "3306"
+          description:
+            en_us: "Container Port: 3306"
+      volumes:
+        - container: /var/lib/mysql
+          description:
+            en_us: "Container Path: /var/lib/mysql"
+    ports: [
+      - target: 3306
+        published: "3310"
+        protocol: tcp
+    ]
+    devices: []
+    cap_add: []
+    networks:
+      - default
+    privileged: false
+    container_name: ""
+    hostname: ""
+networks:
+  default:
+    name: craza-gamer-minetrax_default
+x-casaos:
+  architectures:
+    - amd64
+  author: craza-gamer
+  category: Craza-CasaOS
+  description:
+    en_us: Apache Guacamole is a free and open-source, cross-platform, clientless
+      remote desktop gateway maintained by the Apache Software Foundation.
+  developer: ""
+  hostname: 
+  icon: https://minetrax.github.io/img/logo.svg
+  index: /
+  is_uncontrolled: false
+  main: app
+  port_map: ""
+  scheme: http
+  store_app_id: Craza-Gamer-Minetrax
+  tagline:
+    en_us: Minetrax
+  thumbnail: ""
+  title:
+    custom: ""
+    en_us: Minetrax

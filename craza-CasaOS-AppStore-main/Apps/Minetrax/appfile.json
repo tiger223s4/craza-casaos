@@ -1,0 +1,113 @@
+{
+	"version": "2.0",
+	"title": "Minetrax",
+	"name": "Minetrax",
+	"icon": "https://minetrax.github.io/img/logo.svg",
+	"tagline": "Letter generators for Sonarr and Radarr",
+	"overview": "Bazarr is a companion application to Sonarr and Radarr. It can manage and download subtitles based on your requirements. You define your preferences by TV show or movie and Bazarr takes care of everything for you.",
+	"thumbnail": "https://minetrax.github.io/img/shots/hero-min.png",
+	"screenshots": [
+	"https://minetrax.github.io/assets/images/screenshot-dashboard-c34e2c1a81f4202b30d230ccdc851e4e.png",
+	"https://minetrax.github.io/assets/images/screenshot-perf-162dc31d1568f0d4866658d00bb161bb.png",
+	"https://minetrax.github.io/assets/images/screenshot-chat-9a37d8e8d514942fc5c170a0fc36ed24.png",
+	"https://minetrax.github.io/assets/images/screenshot-playerrank-e724dbfdd3e6e40e724f203d96050970.png",
+	"https://minetrax.github.io/assets/images/screenshot-change-skin-4b1a29528ff5bf2a1addbda4c68b9339.png"
+	],
+	"category": [
+		"Media"
+	],
+	"developer": {
+		"name": "Justman10000",
+		"website": "https://github.com/Justman100",
+		"donate_text": "",
+		"donate_link": ""
+	},
+	"author": {
+		"name": "craza gamer",
+		"website": "https://github.com/tiger223s4",
+		"donate_text": "",
+		"donate_link": ""
+	},
+	"adaptor": {
+		"name": "craza gamer",
+		"website": "https://github.com/tiger223s4",
+		"donate_text": "",
+		"donate_link": ""
+	},
+	"support": "https://discord.gg/WBayFg7muZ",
+    "website": "https://minetrax.github.io/",
+	"container": {
+		"image": "justman10000/minetrax:latest",
+		"shell": "bash",
+		"privileged": false,
+		"network_model": "bridge",
+		"web_ui": {
+			"http": "4456",
+			"path": ""
+		},
+		"health_check": "",
+		"envs": [],
+		"ports": [
+			{
+				"container": "6767",
+				"host": "6767",
+				"type": "tcp",
+				"allocation": "automatic",
+				"configurable": "no",
+				"description": ""
+			}
+		],
+		"volumes": [
+			{
+				"container": "/movies",
+				"host": "/DATA/Media/Movies",
+				"mode": "rw",
+				"allocation": "automatic",
+				"configurable": "no",
+				"description": ""
+			},
+			{
+				"container": "/tv",
+				"host": "/DATA/Media/TV Shows",
+				"mode": "rw",
+				"allocation": "automatic",
+				"configurable": "no",
+				"description": ""
+			},
+			{
+				"container": "/config",
+				"host": "/DATA/AppData/bazarr/config",
+				"mode": "rw",
+				"allocation": "automatic",
+				"configurable": "no",
+				"description": ""
+			}
+		],
+		"devices": [],
+		"constraints": {
+			"min_memory": 64,
+			"min_storage": 128
+		},
+		"restart_policy": "unless-stopped",
+		"sysctls": [],
+		"cap_add": [],
+		"labels": [],
+		"host_name": "Bazarr",
+		"cmd": []
+	},
+	"abilities": {
+		"notification": false,
+		"widgets": false,
+		"authentication": false,
+		"search": false,
+		"upnp": false
+	},
+	"tips": {
+		"before_install": []
+	},
+	"changelog": {
+		"latest_updates": "",
+		"url": ""
+	},
+	"latest_update_date": ""
+}
