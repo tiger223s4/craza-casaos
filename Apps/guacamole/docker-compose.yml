@@ -1,5 +1,5 @@
 # Name of the configuration: big-bear-guacamole
-name: big-bear-guacamole
+name: Crazy-guacamole
 
 # Define the services required for the application
 services:
@@ -102,7 +102,7 @@ x-casaos:
   # Developer's name or identifier (currently empty)
   developer: ""
   # Author of this configuration
-  author: BigBearTechWorld
+  author: craza-gamer
   # Icon for the application
   icon: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/guacamole.png
   # Thumbnail image (currently empty)
@@ -111,6 +111,6 @@ x-casaos:
   title:
     en_us: Guacamole
   # Application category
-  category: BigBearCasaOS
+  category: CrazyCasaOS
   # Port mapping information
   port_map: "8090"
